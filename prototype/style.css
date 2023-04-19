@@ -1,0 +1,62 @@
+* {
+    font-family: sans-serif;
+}
+
+header {
+    background: red;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.1rem;
+}
+
+header h1 {
+    font-size: 5vh;
+    color: white;
+}
+
+header h2 {
+    font-size: 3vh;
+    font-weight: normal;
+}
+
+.tournament {
+    border: 1px solid black;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.tournament .header {
+    border-left: 1rem solid black;
+    padding-left: 1rem;
+    font-weight: bold;
+    color: black;
+}
+
+.tournament .game-round-container {
+    border-left: 1rem solid red;
+    padding-left: 1rem;
+    margin-top: 4rem;
+}
+
+.tournament .game-round-container .game-round {
+    font-size: 2vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.tournament .game-round-container .game-round .vs {
+    text-align: center;
+    width: 5%;
+}
+
+.tournament .game-round-container .game-round .player {
+    background: lightgray;
+    text-align: center;
+    width: calc((100% - 5%)/2);
+}
+
+.tournament .game-round-container .game-round .player .symbol {
+    text-transform: uppercase;
+    font-weight: bold;
+}
