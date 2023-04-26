@@ -1,0 +1,19 @@
+{
+    "name": "lukas/webt-core-doctrine-dbal",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Lukas\\WebtCoreDoctrineDbal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Quantompixel",
+            "email": "39237785+Quantompixel@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "doctrine/dbal": "^3.6",
+        "twig/twig": "^3.5"
+    }
+}
