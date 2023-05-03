@@ -3,6 +3,7 @@
 require 'vendor/autoload.php';
 
 use Doctrine\DBAL\DriverManager;
+use Lukas\WebtCoreDoctrineDbal\Game;
 
 
 $loader = new \Twig\Loader\FilesystemLoader('./templates');
@@ -17,13 +18,16 @@ $connectionParams = [
     'driver' => 'pdo_mysql',
 ];
 $conn = DriverManager::getConnection($connectionParams);
+$queryBuilder = $conn->createQueryBuilder();
 
-$sql = "SELECT concat(P1.FNAME,' ',P1.LNAME) AS NAMEONE, concat(P2.FNAME,' ',P2.LNAME) AS NAMETWO, MOVEONE, MOVETWO, DATE
-FROM GAME
-         JOIN PLAYER P1 ON GAME.FK_PLAYERONE = P1.PK_PLAYER_ID
-         JOIN PLAYER P2 ON GAME.FK_PLAYERTWO = P2.PK_PLAYER_ID;
-";
-$stmt = $conn->query($sql); // Simple, but has several drawbacks
+$queryBuilder = $queryBuilder
+    ->select("concat(p1.fname,' ', p1.lname) as nameone", "concat(p2.fname,' ', p2.lname) as nametwo", "moveone", "movetwo", "date")
+    ->from("game", "g")
+    ->join("g", "player", "p1", "g.fk_playerone = p1.pk_player_id")
+    ->join("g", "player", "p2", "g.fk_playertwo = p2.pk_player_id")
+;
+
+$result = $queryBuilder->executeQuery()->fetchAllAssociative();
 
 $games = [];
 
@@ -44,7 +48,9 @@ function determineWinner(string $symbol1, string $symbol2): int
     }
 }
 
-
+if (isset($_GET["fname1"])) {
+    addEntry();
+}
 
 function addEntry()
 {
@@ -56,9 +62,9 @@ function removeEntry()
 
 }
 
-while (($row = $stmt->fetchAssociative()) !== false) {
-    $winner = determineWinner($row['MOVEONE'], $row['MOVETWO']);
-    $games[] = new \Lukas\WebtCoreDoctrineDbal\Game($row['NAMEONE'], $row['NAMETWO'], $row['MOVEONE'], $row['MOVETWO'], $row['DATE'], $winner);
+foreach ($result as $row) {
+    $winner = determineWinner($row['moveone'], $row['movetwo']);
+    $games[] = new Game($row['nameone'], $row['nametwo'], $row['moveone'], $row['movetwo'], $row['date'], $winner);
 }
 
 $template = $twig->load('template.html');

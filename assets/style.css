@@ -60,6 +60,10 @@ header h2 {
     width: calc((100% - 5%) / 2);
 }
 
+.tournament .game-round-container .game-round .player .name {
+    text-align: center;
+}
+
 .tournament .game-round-container .game-round .winner {
     background: gold;
 }
