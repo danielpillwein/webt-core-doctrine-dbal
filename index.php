@@ -18,7 +18,7 @@ $connectionParams = [
 ];
 $conn = DriverManager::getConnection($connectionParams);
 
-$sql = "SELECT P1.FNAME AS NAMEONE, P2.FNAME AS NAMETWO, MOVEONE, MOVETWO, DATE
+$sql = "SELECT concat(P1.FNAME,' ',P1.LNAME) AS NAMEONE, concat(P2.FNAME,' ',P2.LNAME) AS NAMETWO, MOVEONE, MOVETWO, DATE
 FROM GAME
          JOIN PLAYER P1 ON GAME.FK_PLAYERONE = P1.PK_PLAYER_ID
          JOIN PLAYER P2 ON GAME.FK_PLAYERTWO = P2.PK_PLAYER_ID;
@@ -42,6 +42,18 @@ function determineWinner(string $symbol1, string $symbol2): int
     } else {
         return 2;
     }
+}
+
+
+
+function addEntry()
+{
+
+}
+
+function removeEntry()
+{
+
 }
 
 while (($row = $stmt->fetchAssociative()) !== false) {

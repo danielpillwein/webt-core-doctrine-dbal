@@ -6,7 +6,7 @@
             <p class="symbol">{{ round.move_one }}</p>
         </div>
         <div class="vs">VS</div>
-        <div class="player{{ round.winner == 2? 'winner' : ''}}">
+        <div class="player {{ round.winner == 2? 'winner' : ''}}">
             <p class="name">{{ round.name_two }}</p>
             <p class="symbol">{{ round.move_two }}</p>
         </div>

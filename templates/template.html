@@ -1,18 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>USARPS Championship</title>
     <link rel="stylesheet" href="../assets/style.css">
 </head>
+
 <body>
-<header>
-    <h1>USARPS Championship 2023</h1>
-    <h2>On 19 April 2023</h2>
-</header>
+    <header>
+        <h1>USARPS Championship 2023</h1>
+        <h2>On 19 April 2023</h2>
+    </header>
+    <div class="newEntry">
+        <p>Add new Game</p>
+        <form action="post">
+            <div class="newPlayerContainer">
+                <div class="newPlayer">
+                    <h3>Player 1</h3>
+                    <div class="nameFields">
+                        <div class="name">
+                            <label for="fname1">First Name</label>
+                            <input type="text" name="fname1">
+                        </div>
+                        <div class="name">
+                            <label for="lname2">Last Name</label>
+                            <input type="text" name="lname1">
+                        </div>
+                    </div>
+                    <fieldset id="move1">
+                        <input type="radio" name="move1" value="Rock">
+                        <label for="html">Rock</label>
+                        <input type="radio" name="move1" value="Paper">
+                        <label for="css">Paper</label>
+                        <input type="radio" name="move1" value="Scissors">
+                        <label for="javascript">Scissors</label>
+                    </fieldset>
+                </div>
+                <div class="newPlayer">
+                    <h3>Player 2</h3>
+                    <div class="nameFields">
+                        <div class="name">
+                            <label for="fname1">First Name</label>
+                            <input type="text" name="fname2">
+                        </div>
+                        <div class="name">
+                            <label for="lname2">Last Name</label>
+                            <input type="text" name="lname2">
+                        </div>
+                    </div>
+                    <fieldset id="move2">
+                        <input type="radio" name="move2" value="Rock">
+                        <label for="html">Rock</label>
+                        <input type="radio" name="move2" value="Paper">
+                        <label for="css">Paper</label>
+                        <input type="radio" name="move2" value="Scissors">
+                        <label for="javascript">Scissors</label>
+                    </fieldset>
+                </div>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
     {% block games %}
-        {% include './tournament.html' %}
+    {% include './tournament.html' %}
     {% endblock %}
-</div>
+    </div>
 </body>
+
 </html>
