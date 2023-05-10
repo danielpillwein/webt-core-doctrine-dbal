@@ -76,4 +76,20 @@ class GameRepository
 
         return $games;
     }
+
+    /**
+     * @throws Exception
+     */
+    public static function remove(int $game_id): void
+    {
+        $con = DBALConnection::getConnection();
+
+        $queryBuilder = $con->createQueryBuilder();
+
+        $queryBuilder->delete("game")
+            ->where("pk_game_id = ?")
+            ->setParameter(0, $game_id);
+
+        $queryBuilder->executeQuery();
+    }
 }

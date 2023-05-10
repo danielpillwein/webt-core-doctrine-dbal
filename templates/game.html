@@ -1,14 +1,18 @@
 <div class="game-round-container">
-    <p class="date-time">{{ round.date }}</p>
+    <p class="date-time">{{ game.date }}</p>
     <div class="game-round">
-        <div class="player {{ round.winner == 1? 'winner' : ''}}">
-            <p class="name">{{ round.player_one.fname }}</p>
-            <p class="symbol">{{ round.move_one }}</p>
+        <div class="player {{ game.winner == 1? 'winner' : ''}}">
+            <p class="name">{{ game.player_one.fname }}</p>
+            <p class="symbol">{{ game.move_one }}</p>
         </div>
         <div class="vs">VS</div>
-        <div class="player {{ round.winner == 2? 'winner' : ''}}">
-            <p class="name">{{  round.player_two.fname }}</p>
-            <p class="symbol">{{ round.move_two }}</p>
+        <div class="player {{ game.winner == 2? 'winner' : ''}}">
+            <p class="name">{{  game.player_two.fname }}</p>
+            <p class="symbol">{{ game.move_two }}</p>
         </div>
     </div>
+    <form action="get">
+        <label>Delete Game: </label>
+        <input type="submit" name="remove" value="{{ game.game_id }}">
+    </form>
 </div>
