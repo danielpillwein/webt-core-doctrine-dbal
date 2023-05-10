@@ -73,6 +73,17 @@ header h2 {
     font-weight: bold;
 }
 
+.tournament .game-round-container .remove-form {
+    margin-top: 1rem;
+}
+
+.tournament .game-round-container .remove-form .remove-submit {
+    background: rgba(255, 0, 0, 0.75);
+    border: 1px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 1024px) {
     body {
         width: 1024px;
