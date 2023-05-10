@@ -5,6 +5,7 @@ require 'vendor/autoload.php';
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Lukas\WebtCoreDoctrineDbal\Game;
+use Lukas\WebtCoreDoctrineDbal\GameRepository;
 use Lukas\WebtCoreDoctrineDbal\PlayerRepository;
 use Lukas\WebtCoreDoctrineDbal\Player;
 
@@ -20,14 +21,6 @@ $connectionParams = [
     'host' => 'localhost',
     'driver' => 'pdo_mysql',
 ];
-$conn = DriverManager::getConnection($connectionParams);
-$queryBuilder = $conn->createQueryBuilder();
-
-$queryBuilder = $queryBuilder
-    ->select("concat(p1.fname,' ', p1.lname) as nameone", "concat(p2.fname,' ', p2.lname) as nametwo", "moveone", "movetwo", "date")
-    ->from("game", "g")
-    ->join("g", "player", "p1", "g.fk_playerone = p1.pk_player_id")
-    ->join("g", "player", "p2", "g.fk_playertwo = p2.pk_player_id");
 
 function determineWinner(string $symbol1, string $symbol2): int
 {
@@ -47,17 +40,18 @@ function determineWinner(string $symbol1, string $symbol2): int
 }
 
 if (isset($_GET["fname1"])) {
-    addEntry($_GET["fname1"], $_GET["lname1"], $_GET["fname2"], $_GET["lname2"], $_GET["move1"], $_GET["move2"], $queryBuilder);
+    addEntry($_GET["fname1"], $_GET["lname1"], $_GET["fname2"], $_GET["lname2"], $_GET["move1"], $_GET["move2"]);
 }
-
-// $queryBuilder->select
 
 /**
  * @throws \Doctrine\DBAL\Exception
  */
-function addEntry($fname1, $lname1, string $fname2, $lname2, $move1, $move2, QueryBuilder $qb): void
+function addEntry(string $fname1, string $lname1, string $fname2, string $lname2, string $move1, string $move2): void
 {
-    PlayerRepository::add(new Player($fname1, $lname1));
+    $player1 = PlayerRepository::add(new Player(null, $fname1, $lname1));
+    $player2 = PlayerRepository::add(new Player(null, $fname2, $lname2));
+
+    $game = GameRepository::add(new Game(null, $player1, $player2, $move1, $move2, date('Y-m-d H:i:s'), determineWinner($move1, $move2)));
 }
 
 
@@ -66,19 +60,9 @@ function removeEntry()
 
 }
 
-$result = $queryBuilder->executeQuery()->fetchAllAssociative();
-
-$games = [];
-
-
-foreach ($result as $row) {
-    $winner = determineWinner($row['moveone'], $row['movetwo']);
-    $games[] = new Game($row['nameone'], $row['nametwo'], $row['moveone'], $row['movetwo'], $row['date'], $winner);
-}
-
 $template = $twig->load('template.html');
 
-echo $template->render(['games' => $games]);
+echo $template->render(['games' => GameRepository::getAll()]);
 
 
 

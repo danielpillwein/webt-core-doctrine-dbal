@@ -13,9 +13,10 @@ class PlayerRepository
     /**
      * @throws Exception
      */
-    public static function add(Player $player): void
+    public static function add(Player $player): Player
     {
-        $queryBuilder = DBALConnection::getConnection()->createQueryBuilder();
+        $con = DBALConnection::getConnection();
+        $queryBuilder = $con->createQueryBuilder();
 
         $queryBuilder->insert("player")
             ->values([
@@ -27,6 +28,8 @@ class PlayerRepository
 
         $queryBuilder->executeQuery();
 
+        $player->setPlayerId($con->lastInsertId());
 
+        return $player;
     }
 }
