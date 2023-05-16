@@ -28,6 +28,7 @@ class PlayerRepository
 
         $queryBuilder->executeQuery();
 
+        // setzt den Primary-Key des Spielerobjekts
         $player->setPlayerId($con->lastInsertId());
 
         return $player;
