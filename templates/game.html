@@ -1,14 +1,14 @@
 <div class="game-round-container">
-    <p class="date-time">{{ game.date }}</p>
+    <p class="date-time"></p>
     <div class="game-round">
         <div class="player {{ game.winner == 1? 'winner' : ''}}">
             <p class="name">{{ game.player_one.fname }} {{ game.player_one.lname }}</p>
-            <p class="symbol">{{ game.move_one }}</p>
+            <p class="symbol">{{ game.moveOne }}</p>
         </div>
         <div class="vs">VS</div>
         <div class="player {{ game.winner == 2? 'winner' : ''}}">
             <p class="name">{{ game.player_two.fname }} {{ game.player_two.lname }}</p>
-            <p class="symbol">{{ game.move_two }}</p>
+            <p class="symbol">{{ game.moveTwo }}</p>
         </div>
     </div>
     <form action="get" class="remove-form">

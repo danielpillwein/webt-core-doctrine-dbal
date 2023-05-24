@@ -1,13 +1,7 @@
 <?php
-// bootstrap.php
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
-use Doctrine\Common\DataFixtures\Loader;
-use Lukas\WebtCoreDoctrineDbal\GameDataLoader;
-use Lukas\WebtCoreDoctrineDbal\PlayerDataLoader;
 
 require_once "vendor/autoload.php";
 

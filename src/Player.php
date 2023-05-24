@@ -56,4 +56,12 @@ class Player
     {
         $this->player_id = $player_id;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getPlayerId(): ?int
+    {
+        return $this->player_id;
+    }
 }

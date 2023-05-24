@@ -111,4 +111,21 @@ class Game
     {
         $this->game_id = $game_id;
     }
+
+    public function getWinner(): int
+    {
+        if ($this->move_one == $this->move_two) {
+            return 0;
+        }
+
+        $match = substr($this->move_one, 0, 1) . substr($this->move_two, 0, 1);
+
+        $winner1 = ["RS", "PR", "SP"];
+
+        if (in_array($match, $winner1)) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
 }
