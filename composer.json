@@ -18,5 +18,8 @@
         "doctrine/orm": "^2.15",
         "symfony/yaml": "^6.0",
         "symfony/cache": "^6.0"
+    },
+    "require-dev": {
+        "doctrine/data-fixtures": "^1.6"
     }
 }

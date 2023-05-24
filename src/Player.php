@@ -14,6 +14,38 @@ class Player
     private int|null $player_id = null;
     #[ORM\Column(type: 'string')]
     private string $fname;
+
+    /**
+     * @return string
+     */
+    public function getFname(): string
+    {
+        return $this->fname;
+    }
+
+    /**
+     * @param string $fname
+     */
+    public function setFname(string $fname): void
+    {
+        $this->fname = $fname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLname(): string
+    {
+        return $this->lname;
+    }
+
+    /**
+     * @param string $lname
+     */
+    public function setLname(string $lname): void
+    {
+        $this->lname = $lname;
+    }
     #[ORM\Column(type: 'string')]
     private string $lname;
 

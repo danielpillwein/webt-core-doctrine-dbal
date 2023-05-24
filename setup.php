@@ -25,3 +25,10 @@ $connection = DriverManager::getConnection([
 
 // obtaining the entity manager
 $entityManager = new EntityManager($connection, $config);
+
+$loader = new Loader();
+$loader->addFixture(new PlayerDataLoader());
+$loader->addFixture(new GameDataLoader());
+
+$executor = new ORMExecutor($entityManager, new ORMPurger());
+$executor->execute($loader->getFixtures());
