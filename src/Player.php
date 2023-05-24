@@ -2,13 +2,20 @@
 
 namespace Lukas\WebtCoreDoctrineDbal;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'players')]
 class Player
 {
-    public function __construct(
-        public int|null $player_id,
-        public string $fname,
-        public string $lname
-    ){}
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
+    private int|null $player_id = null;
+    #[ORM\Column(type: 'string')]
+    private string $fname;
+    #[ORM\Column(type: 'string')]
+    private string $lname;
 
     /**
      * @param int $player_id

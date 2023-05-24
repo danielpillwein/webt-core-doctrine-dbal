@@ -2,18 +2,27 @@
 
 namespace Lukas\WebtCoreDoctrineDbal;
 
+use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'games')]
 class Game
 {
-    public function __construct(
-        public int|null $game_id,
-        public Player   $player_one,
-        public Player   $player_two,
-        public string   $move_one,
-        public string   $move_two,
-        public string   $date
-    )
-    {
-    }
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
+    private int|null $game_id = null;
+    #[ORM\Column(type: 'integer')]
+    private int $player_one_id;
+    #[ORM\Column(type: 'integer')]
+    private int $player_two_id;
+    #[ORM\Column(type: 'string')]
+    private string $move_one;
+    #[ORM\Column(type: 'string')]
+    private string $move_two;
+    #[ORM\Column(type: 'datetime')]
+    private DateTime $date;
 
     /**
      * @param int|null $game_id
