@@ -11,7 +11,7 @@ class Player
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private int|null $player_id = null;
+    private int|null $id = null;
     #[ORM\Column(type: 'string')]
     private string $fname;
 

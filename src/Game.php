@@ -12,33 +12,50 @@ class Game
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private int|null $game_id = null;
-    #[ORM\Column(type: 'integer')]
-    private int $player_one_id;
-    #[ORM\Column(type: 'integer')]
-    private int $player_two_id;
+    private int|null $id = null;
     #[ORM\Column(type: 'string')]
     private string $move_one;
     #[ORM\Column(type: 'string')]
     private string $move_two;
     #[ORM\Column(type: 'datetime')]
     private DateTime $date;
+    #[ORM\ManyToOne(targetEntity: Player::class)]
+    private Player|null $player_one = null;
+    #[ORM\ManyToOne(targetEntity: Player::class)]
+    private Player|null $player_two = null;
 
     /**
-     * @return int
+     * @return Player|null
      */
-    public function getPlayerTwoId(): int
+    public function getPlayerOne(): ?Player
     {
-        return $this->player_two_id;
+        return $this->player_one;
     }
 
     /**
-     * @param int $player_two_id
+     * @param Player|null $player_one
      */
-    public function setPlayerTwoId(int $player_two_id): void
+    public function setPlayerOne(?Player $player_one): void
     {
-        $this->player_two_id = $player_two_id;
+        $this->player_one = $player_one;
     }
+
+    /**
+     * @return Player|null
+     */
+    public function getPlayerTwo(): ?Player
+    {
+        return $this->player_two;
+    }
+
+    /**
+     * @param Player|null $player_two
+     */
+    public function setPlayerTwo(?Player $player_two): void
+    {
+        $this->player_two = $player_two;
+    }
+
 
     /**
      * @return string
@@ -89,27 +106,19 @@ class Game
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPlayerOneId(): int
+    public function getId(): ?int
     {
-        return $this->player_one_id;
+        return $this->id;
     }
 
     /**
-     * @param int $player_one_id
+     * @param int|null $id
      */
-    public function setPlayerOneId(int $player_one_id): void
+    public function setId(?int $id): void
     {
-        $this->player_one_id = $player_one_id;
-    }
-
-    /**
-     * @param int|null $game_id
-     */
-    public function setGameId(?int $game_id): void
-    {
-        $this->game_id = $game_id;
+        $this->id = $id;
     }
 
     public function getWinner(): int
