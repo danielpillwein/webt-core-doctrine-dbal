@@ -79,6 +79,7 @@ header h2 {
 
 .tournament .game-round-container .remove-form .remove-submit {
     background: rgba(255, 0, 0, 0.75);
+    color: white;
     border: 1px solid black;
     border-radius: 2px;
     cursor: pointer;
